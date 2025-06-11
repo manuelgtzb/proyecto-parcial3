@@ -28,7 +28,9 @@ public class MiProyectoController : ControllerBase
         var db = client.GetDatabase("Escuela_Ricardo_Joselyn");
         var collecion = db.GetCollection<Equipo>("Equipo");
 
-        var lista = collecion.Find(FilterDefinition<Equipo>.Empty).ToList();
-        return Ok(lista);
+        var filter = FilterDefinition<Equipo>.Empty;
+        var item = collecion.Find(filter).FirstOrDefault();
+
+        return Ok(item);
     }
 }
